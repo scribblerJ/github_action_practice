@@ -17,4 +17,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add last_run.txt
-        git diff --cached --quiet || (git commit -m "Updated last run time" && git push)
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Updated last run time"
+          git push
+        fi
