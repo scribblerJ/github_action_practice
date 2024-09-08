@@ -1,1 +1,21 @@
+name: Log Timestamp
 
+on: [push]
+
+jobs:
+  log-time:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Log current time
+      run: echo "Last run: $(date)" >> last_run.txt
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add last_run.txt
+        git commit -m "Updated last run time"
+        git push
