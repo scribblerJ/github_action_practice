@@ -1,8 +1,7 @@
 name: Log Timestamp
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'  # 매 10분마다 실행
+  workflow_dispatch:  # 수동으로 실행 가능하도록 설정
 
 jobs:
   log-time:
