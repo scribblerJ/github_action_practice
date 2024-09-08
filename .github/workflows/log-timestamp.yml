@@ -1,6 +1,8 @@
 name: Log Timestamp
 
-on: [push]
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # 매 10분마다 실행
 
 jobs:
   log-time:
@@ -12,15 +14,14 @@ jobs:
     - name: Log current time
       run: echo "Testing file write" >> test_file.txt
 
-
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add last_run.txt
+        git add test_file.txt
         if git diff --cached --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Updated last run time"
+          git commit -m "Updated file"
           git push
         fi
