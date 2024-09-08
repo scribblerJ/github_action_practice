@@ -10,11 +10,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Log current time
-      run: echo "Last run: $(date)" >> last_run.txt
+      run: echo "Testing file write" >> test_file.txt
+
 
     - name: Commit changes
       run: |
-        set -x
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add last_run.txt
